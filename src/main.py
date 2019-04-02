@@ -28,7 +28,7 @@ def create_song_node(song_name, metadata_score):
     if song_name in all_songs:
         # Update that song listing's metadata score
         song = all_songs[song_name]
-        song.score = metadata_score
+        song._score = metadata_score
         return
     all_songs[song_name] = Song(song_name, metadata_score)
 
@@ -50,7 +50,7 @@ def define_similarity(song_a, song_b):
         nodeA = all_songs[song_a]
         nodeB = all_songs[song_b]
 
-        if nodeB in nodeA.connected:
+        if nodeB in nodeA._connected:
             return Exception("{} and {} are already connected!".format(nodeA, nodeB))
 
         nodeA._connected.append(nodeB)
